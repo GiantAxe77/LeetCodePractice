@@ -94,4 +94,134 @@ class Solution {
         return result
     }
     
+    
+    // leetcode 66
+    func plusOne(_ digits: [Int]) -> [Int] {
+        var result = [Int]()
+        var tmp = digits
+        var count = tmp.count
+        var flag = false // 是否需要进位
+        var plusFlag = false // 是否加过1
+        var flagCount = 0
+        
+        while count > 0 {
+            var lastDigit = tmp.last // 最后一位
+            if flag {
+                lastDigit! += 1
+                plusFlag = true
+                flagCount += 1
+            }
+            if lastDigit! + 1 > 9 {
+                let value = plusFlag ? (lastDigit! == 10 ? 0 : lastDigit!) : 0
+                result.insert(value, at: 0)
+                flag = value == 0
+            } else {
+                result.insert(plusFlag ? lastDigit! : lastDigit!+1, at: 0)
+                plusFlag = true
+                flag = false
+            }
+            tmp.removeLast()
+            
+            count -= 1
+        }
+        let firstDig = digits.first
+        if flagCount == digits.count-1 && firstDig == 9 {
+            result.insert(1, at: 0)
+        }
+        return result
+    }
+    
+    
+    // leetcode 14
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        guard strs.count > 0 else {
+            return ""
+        }
+        for tmp in strs { // 数组中有一个为空,则返回""
+            if tmp.isEmpty {
+                return ""
+            }
+        }
+        var reslut = ""
+        var tmpArr = strs
+        let firstWord = strs.first! // 拿出第一个元素
+        var index = 1
+        var currentLetter = firstWord.substring(to: firstWord.index(firstWord.startIndex, offsetBy: index))
+        tmpArr.remove(at: 0) // 遍历剩下的元素
+        let count = tmpArr.count
+        if count == 0 && !firstWord.isEmpty {
+            return firstWord
+        }
+        
+        var eqFlag = false
+        repeat {
+            var tmpStr = ""
+            for i in 0..<count {
+                 tmpStr = tmpArr[i]
+                if tmpStr.hasPrefix(currentLetter) {
+                    eqFlag = true
+                    continue
+                } else {
+                    eqFlag = false
+                    break
+                }
+            }
+            if eqFlag { // 如果2个字符相等
+                index += 1
+                if index > tmpStr.characters.count { // 处理临界情况
+                    eqFlag = false
+                    if index > firstWord.characters.count {
+                        return currentLetter
+                    }
+                    let content = firstWord.substring(to: firstWord.index(firstWord.startIndex, offsetBy: index))
+                    return tmpStr.characters.count == 1 ? tmpStr : content.characters.count > tmpStr.characters.count ? tmpStr : content
+                }
+                currentLetter = firstWord.characters.count == 1 ? firstWord : (index > firstWord.characters.count) ? firstWord : firstWord.substring(to: firstWord.index(firstWord.startIndex, offsetBy: index))
+                reslut = currentLetter
+            } else {
+                reslut = currentLetter.substring(to: currentLetter.index(currentLetter.startIndex, offsetBy: currentLetter.characters.count-1))
+            }
+            
+        } while (eqFlag == true && currentLetter != "")
+        return reslut
+    }
+    
+    
+    func longestCommonPrefix2(_ strs: [String]) -> String {
+        guard strs.count > 0 else {
+            return ""
+        }
+        
+        var res = [Character](strs[0].characters)
+        
+        for str in strs {
+            var strContent = [Character](str.characters)
+            print(strContent)
+            
+            if res.count > strContent.count {
+                res = Array(res[0..<strContent.count])
+            }
+            
+            for i in 0..<res.count {
+                if res[i] != strContent[i] {
+                    res = Array(res[0..<i])
+                    break
+                }
+            }
+        }
+        
+        return String(res)
+    }
 }
+
+//Solution().plusOne([1,9,9])
+Solution().plusOne([2,4,9,3,9])
+
+Solution().longestCommonPrefix2(["flower", "flow", "floght"])
+//Solution().longestCommonPrefix(["b", "bcb"])
+//Solution().longestCommonPrefix(["ab", "abcc"])
+//Solution().longestCommonPrefix(["a"])
+//Solution().longestCommonPrefix(["aa","ab"])
+//Solution().longestCommonPrefix(["aaba","aa"])
+
+
