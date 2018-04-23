@@ -132,7 +132,7 @@ class Solution {
     }
     
     
-    // leetcode 14
+    // leetcode 14-1
     func longestCommonPrefix(_ strs: [String]) -> String {
         guard strs.count > 0 else {
             return ""
@@ -186,7 +186,7 @@ class Solution {
         return reslut
     }
     
-    
+    // leetcode 14-2
     func longestCommonPrefix2(_ strs: [String]) -> String {
         guard strs.count > 0 else {
             return ""
@@ -212,6 +212,30 @@ class Solution {
         
         return String(res)
     }
+    
+    // leetcode 67
+    func addBinary(_ a: String, _ b: String) -> String {
+        var sum = 0, carry = 0, result = ""
+        var aArr = Array(a.characters), bArr = Array(b.characters)
+        var i = aArr.count - 1, j = bArr.count - 1
+        
+        while carry > 0 || i >= 0 || j >= 0 { // 有进位或者还没读取完字符串
+            sum = carry
+            if i >= 0 { // 避免数组越界,取出最右边一位相加
+                sum += Int(String(aArr[i]))!
+                i -= 1
+            }
+            if j >= 0 { // 避免数组越界,取出最右边一位相加
+                sum += Int(String(bArr[j]))!
+                j -= 1
+            }
+            carry = sum / 2 // 计算是否有进位
+            sum = sum % 2   // 计算当前位是多少（sum = 0/1/2）求余后sum = 0/1
+            result = String(sum) + result
+        }
+        
+        return result
+    }
 }
 
 //Solution().plusOne([1,9,9])
@@ -223,5 +247,7 @@ Solution().longestCommonPrefix2(["flower", "flow", "floght"])
 //Solution().longestCommonPrefix(["a"])
 //Solution().longestCommonPrefix(["aa","ab"])
 //Solution().longestCommonPrefix(["aaba","aa"])
+
+Solution().addBinary("1101", "1001")
 
 
