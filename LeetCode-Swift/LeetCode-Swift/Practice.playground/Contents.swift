@@ -215,6 +215,7 @@ class Solution {
     
     // leetcode 67
     func addBinary(_ a: String, _ b: String) -> String {
+        
         var sum = 0, carry = 0, result = ""
         var aArr = Array(a.characters), bArr = Array(b.characters)
         var i = aArr.count - 1, j = bArr.count - 1
@@ -236,6 +237,39 @@ class Solution {
         
         return result
     }
+    
+    // leetcode 20
+    func isValid(_ s: String) -> Bool {
+
+        var chars = Array(s.characters)
+        let count = chars.count
+        var stack = [Character]()
+        for i in 0..<count {
+            let current = chars[i]
+            if current == "(" || current == "[" || current == "{" {
+                stack.append(current)
+            } else if current == ")" {
+                if stack.last == "(" && stack.count != 0 {
+                    stack.removeLast()
+                } else {
+                    return false
+                }
+            } else if current == "]" {
+                if stack.last == "[" && stack.count != 0 {
+                    stack.removeLast()
+                } else {
+                    return false
+                }
+            } else if current == "}" {
+                if stack.last == "{" && stack.count != 0 {
+                    stack.removeLast()
+                } else {
+                    return false
+                }
+            }
+        }
+        return stack.isEmpty
+    }
 }
 
 //Solution().plusOne([1,9,9])
@@ -250,4 +284,8 @@ Solution().longestCommonPrefix2(["flower", "flow", "floght"])
 
 Solution().addBinary("1101", "1001")
 
+//Solution().isValid("[])")
+Solution().isValid("()[]{}")
+Solution().isValid("([])")
+Solution().isValid("([)]")
 
