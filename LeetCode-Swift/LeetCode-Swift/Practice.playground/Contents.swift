@@ -241,13 +241,14 @@ class Solution {
     // leetcode 20
     func isValid(_ s: String) -> Bool {
 
+        // 用栈的思想，先进后出，比较栈内的括号是否和当前括号匹配
         var chars = Array(s.characters)
         let count = chars.count
         var stack = [Character]()
         for i in 0..<count {
             let current = chars[i]
             if current == "(" || current == "[" || current == "{" {
-                stack.append(current)
+                stack.append(current) // 压栈
             } else if current == ")" {
                 if stack.last == "(" && stack.count != 0 {
                     stack.removeLast()
