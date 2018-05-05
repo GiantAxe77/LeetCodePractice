@@ -271,6 +271,21 @@ class Solution {
         }
         return stack.isEmpty
     }
+    
+    // leetcode 21
+    // Definition for singly-linked list.
+    public class ListNode {
+        public var val: Int
+        public var next: ListNode?
+        public init(_ val: Int) {
+            self.val = val
+            self.next = nil
+        }
+    }
+
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        
+    }
 }
 
 //Solution().plusOne([1,9,9])
@@ -285,8 +300,8 @@ Solution().longestCommonPrefix2(["flower", "flow", "floght"])
 
 Solution().addBinary("1101", "1001")
 
-//Solution().isValid("[])")
-Solution().isValid("()[]{}")
-Solution().isValid("([])")
-Solution().isValid("([)]")
+Solution().isValid("[])")
+//Solution().isValid("()[]{}")
+//Solution().isValid("([])")
+//Solution().isValid("([)]")
 
