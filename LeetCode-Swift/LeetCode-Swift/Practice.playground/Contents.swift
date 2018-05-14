@@ -307,9 +307,17 @@ func addNode(_ node: ListNode) -> Bool {
         }
         q.next = node
         
-        print(head?.next)
-        print(q.next)
+        print(head!.next!)
+//        print(q.next!)
         return true
+    }
+}
+
+func outPut() -> Void {
+    var p = head?.next
+    while (p != nil) {
+        print(p!.val)
+        p = p?.next
     }
 }
 
@@ -321,6 +329,7 @@ for i in 0  ..< arr.count
 //    addNode(ListNode(arr[i],nil))
     addNode(ListNode.init(arr[i], nil))
 }
+outPut()
 
 
 //Solution().plusOne([1,9,9])
