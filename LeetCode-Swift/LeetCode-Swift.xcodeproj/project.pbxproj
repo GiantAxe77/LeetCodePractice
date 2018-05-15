@@ -26,6 +26,7 @@
 		5504FC962080FBF100802BC6 /* LeetCode-Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LeetCode-Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5504FC992080FBF100802BC6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5504FCA02080FC0E00802BC6 /* Practice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Practice.playground; sourceTree = "<group>"; };
+		550C5DF920AB33F5001D44C9 /* LinkedListPractice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinkedListPractice.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +61,7 @@
 			children = (
 				5504FC992080FBF100802BC6 /* main.swift */,
 				5504FCA02080FC0E00802BC6 /* Practice.playground */,
+				550C5DF920AB33F5001D44C9 /* LinkedListPractice.playground */,
 			);
 			path = "LeetCode-Swift";
 			sourceTree = "<group>";
@@ -252,6 +254,7 @@
 				5504FC9F2080FBF100802BC6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

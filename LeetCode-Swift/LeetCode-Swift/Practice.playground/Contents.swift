@@ -278,58 +278,7 @@ class Solution {
 //    }
 }
 
-// Definition for singly-linked list.
-public class ListNode {
-    public var val: Int
-    public var next: ListNode?
-    public init(_ val: Int, _ next: ListNode?) {
-        self.val = val
-        self.next = next
-    }
-}
 
-var head: ListNode?
-func createList() {
-    if head == nil {
-        head = ListNode(0, nil)
-    }
-}
-
-func addNode(_ node: ListNode) -> Bool {
-    if head == nil {
-        return false
-    } else {
-        var p = head?.next
-        var q: ListNode! = head
-        while (p != nil) {
-            q = p
-            p = p!.next
-        }
-        q.next = node
-        
-        print(head!.next!)
-//        print(q.next!)
-        return true
-    }
-}
-
-func outPut() -> Void {
-    var p = head?.next
-    while (p != nil) {
-        print(p!.val)
-        p = p?.next
-    }
-}
-
-var arr = [46,23,45,2,78,32,46,24,11,99,66,88,199,100,156,27,175]
-
-createList()
-for i in 0  ..< arr.count 
-{
-//    addNode(ListNode(arr[i],nil))
-    addNode(ListNode.init(arr[i], nil))
-}
-outPut()
 
 
 //Solution().plusOne([1,9,9])
