@@ -276,10 +276,33 @@ class Solution {
 //    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
 //
 //    }
+    
+    // leetcode 69
+    func mySqrt(_ x: Int) -> Int {
+        if x <= 0 {
+            return x
+        }
+        
+        var left = 0
+        var right = x / 2 + 1
+        var mid = 0
+        
+        while left <= right {
+            mid = (right - left) / 2 + left
+            if mid * mid == x {
+                return mid
+            } else if mid * mid < x {
+                left = mid + 1
+            } else {
+                right = mid - 1
+            }
+        }
+        return right
+    }
 }
 
 
-
+Solution().mySqrt(8)
 
 //Solution().plusOne([1,9,9])
 Solution().plusOne([2,4,9,3,9])
