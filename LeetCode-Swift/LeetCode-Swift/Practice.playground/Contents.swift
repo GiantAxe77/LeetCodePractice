@@ -299,10 +299,18 @@ class Solution {
         }
         return right
     }
+    
+    // leetcode 69-2
+    func mySqrt2(_ x: Double) -> Double {
+        var k = x
+        while k * k - x > pow(1, -9) {
+            k = 0.5 * (k + x / k)
+        }
+        return k
+    }
 }
 
-
-Solution().mySqrt(8)
+Solution().mySqrt2(9)
 
 //Solution().plusOne([1,9,9])
 Solution().plusOne([2,4,9,3,9])
