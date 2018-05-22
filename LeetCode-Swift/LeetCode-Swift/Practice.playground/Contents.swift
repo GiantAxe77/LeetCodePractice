@@ -4,6 +4,15 @@ import Cocoa
 
 var str = "Hello, playground"
 
+// Definition for singly-linked list.
+public class ListNode {
+    public var val: Int
+    public var next: ListNode?
+    public init(_ val: Int, _ next: ListNode?) {
+        self.val = val
+        self.next = next
+    }
+}
 
 class Solution {
     
@@ -273,9 +282,22 @@ class Solution {
     }
     
     // leetcode 21
-//    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
-//
-//    }
+    func mergeTwoLists(_ l1: ListNode?, _ l2: ListNode?) -> ListNode? {
+        // 递归查找：函数输出可以作为输入，进而更新输入，直到两个链表都为空。
+        if l1 == nil {
+            return l2
+        }
+        if l2 == nil {
+            return l1
+        }
+        if l1!.val < l2!.val {
+            l1?.next = mergeTwoLists(l1?.next, l2)
+            return l1
+        } else {
+            l2?.next = mergeTwoLists(l2?.next, l1)
+            return l2
+        }
+    }
     
     // leetcode 69
     func mySqrt(_ x: Int) -> Int {
@@ -300,7 +322,7 @@ class Solution {
         return right
     }
     
-    // leetcode 69-2
+    // leetcode 69-2（牛顿迭代法）
     func mySqrt2(_ x: Double) -> Double {
         var k = x
         while k * k - x > pow(1, -9) {
@@ -309,6 +331,56 @@ class Solution {
         return k
     }
 }
+
+//var head: ListNode?
+//func createList() {
+//    if head == nil {
+//        head = ListNode(0, nil)
+//    }
+//}
+//
+//func addNode(_ node: ListNode) -> Bool {
+//    if head == nil {
+//        return false
+//    } else {
+//        var p = head?.next
+//        var q: ListNode! = head
+//        while (p != nil) {
+//            q = p
+//            p = p!.next
+//        }
+//        q.next = node
+//        return true
+//    }
+//}
+//
+//var arr = [1,2,4]
+//createList()
+//for i in 0  ..< arr.count {
+//    addNode(ListNode.init(arr[i], nil))
+//}
+//
+//var head2: ListNode?
+//func createList2() {
+//    if head2 == nil {
+//        head2 = ListNode(0, nil)
+//    }
+//}
+//createList2()
+//var arr1 = [1,3,4]
+//for i in 0  ..< arr1.count {
+//    addNode(ListNode.init(arr1[i], nil))
+//}
+//
+//let res = Solution().mergeTwoLists(head, head2)
+//func outPut() -> Void {
+//    var p = res?.next
+//    while (p != nil) {
+//        print(p!.val)
+//        p = p?.next
+//    }
+//}
+//outPut()
 
 Solution().mySqrt2(9)
 
