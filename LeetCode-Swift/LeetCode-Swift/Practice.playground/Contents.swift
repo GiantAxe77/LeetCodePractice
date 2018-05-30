@@ -330,6 +330,22 @@ class Solution {
         }
         return k
     }
+    
+    // leetcode 26
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        if nums.count <= 1 {
+            return nums.count
+        }
+        var lastIndex = 0
+        for num in nums {
+            if num != nums[lastIndex] {
+                nums[lastIndex+1] = num
+                lastIndex += 1
+            }
+        }
+        
+        return lastIndex + 1
+    }
 }
 
 //var head: ListNode?
@@ -401,6 +417,10 @@ Solution().isValid("[])")
 //Solution().isValid("([])")
 //Solution().isValid("([)]")
 
+
+var nums = [1, 1, 2, 2, 3]
+//var nums = [1, 2, 2, 2, 3]
+Solution().removeDuplicates(&nums)
 
 
 
