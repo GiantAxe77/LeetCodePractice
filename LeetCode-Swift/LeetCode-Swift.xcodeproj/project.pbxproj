@@ -25,8 +25,9 @@
 /* Begin PBXFileReference section */
 		5504FC962080FBF100802BC6 /* LeetCode-Swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "LeetCode-Swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5504FC992080FBF100802BC6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		5504FCA02080FC0E00802BC6 /* Practice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Practice.playground; sourceTree = "<group>"; };
-		550C5DF920AB33F5001D44C9 /* LinkedListPractice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinkedListPractice.playground; sourceTree = "<group>"; };
+		5504FCA02080FC0E00802BC6 /* Practice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Practice.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		550C5DF920AB33F5001D44C9 /* LinkedListPractice.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinkedListPractice.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		5581E74A245BB6C400E6F613 /* LeetcodeAlgorithm.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LeetcodeAlgorithm.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		5504FC982080FBF100802BC6 /* LeetCode-Swift */ = {
 			isa = PBXGroup;
 			children = (
+				5581E74A245BB6C400E6F613 /* LeetcodeAlgorithm.playground */,
 				5504FC992080FBF100802BC6 /* main.swift */,
 				5504FCA02080FC0E00802BC6 /* Practice.playground */,
 				550C5DF920AB33F5001D44C9 /* LinkedListPractice.playground */,
