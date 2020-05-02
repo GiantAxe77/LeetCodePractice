@@ -25,6 +25,23 @@ public class ListNode {
     }
 }
 
+/**
+ * Definition for a binary tree node.
+ */
+public class TreeNode {
+    public var val: Int
+    public var left: TreeNode?
+    public var right: TreeNode?
+    public init() { self.val = 0; self.left = nil; self.right = nil; }
+    public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+    public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+        self.val = val
+        self.left = left
+        self.right = right
+    }
+}
+
+
 class Solution {
     
     // leetcode 7
@@ -849,13 +866,13 @@ let l1 = LinkedList()
 l1.append(value: 1)
 l1.append(value: 2)
 l1.append(value: 4)
-print(l1)
+//print(l1)
 
 let l2 = LinkedList()
 l2.append(value: 1)
 l2.append(value: 3)
 l2.append(value: 4)
-print(l2)
+//print(l2)
 
 //Input: 1->2->4, 1->3->4
 //Output: 1->1->2->3->4->4
@@ -1265,7 +1282,7 @@ let sol19List = LinkedList()
 sol19List.append(value: 1)
 sol19List.append(value: 1)
 sol19List.append(value: 1)
-print(sol19List)
+//print(sol19List)
 
 //let res19 = NewSolution19().deleteDuplicates(sol19List.head)
 //print(res19!.val)
@@ -1291,7 +1308,122 @@ class NewSolution20 {
     }
 }
 
-var nums1 = [0]
-var nums2 = [1]
-NewSolution20().merge(&nums1, 0, nums2, 1)
+//var nums1 = [0]
+//var nums2 = [1]
+//NewSolution20().merge(&nums1, 0, nums2, 1)
 
+class NewSolution21 {
+    func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+        var res1 = ""
+        let tmp1 = preOrder(rootNode: p, &res1)
+//        print("tmp1=\(tmp1)")
+        var res2 = ""
+        let tmp2 = preOrder(rootNode: q, &res2)
+//        print("tmp2=\(tmp2)")
+        return tmp1 == tmp2
+    }
+    func preOrder(rootNode: TreeNode?, _ res: inout String) -> String {
+        if rootNode != nil {
+            if let val = rootNode?.val {
+                res.append(String(val))
+                preOrder(rootNode: rootNode?.left, &res)
+                preOrder(rootNode: rootNode?.right, &res)
+            }
+            return res
+        }
+        return ""
+    }
+    
+//    // 网上解法
+//    func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+//        if p == nil && q == nil {
+//            return true
+//        }
+//        if p == nil || q == nil {
+//            return false
+//        }
+//        return (p?.val == q?.val) && isSameTree(p?.left, q?.left) && isSameTree(p?.right, q?.right)
+//    }
+}
+//let pSonLeft = TreeNode.init(1)
+//let pSonRight = TreeNode.init(2)
+//let pSon = TreeNode.init(2, pSonLeft, pSonRight)
+//let pRight = TreeNode.init(3)
+//let p = TreeNode.init(1, pSon, pRight)
+//
+//let qSonLeft = TreeNode.init(1)
+//let qSonRight = TreeNode.init(2)
+//let qSon = TreeNode.init(2, qSonLeft, qSonRight)
+//let qRight = TreeNode.init(3)
+//let q = TreeNode.init(1, qSon, qRight)
+//NewSolution21().isSameTree(p, q)
+
+class NewSolution22 {
+    /*
+     // 一开始想到的方法是采用中序遍历，然后比较数组中元素是否对称最后得出结果，但是经过试验不行，比如像这种树：[5,4,1,null,1,null,4,2,null,2,null]
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        var res = [Int]()
+        midOrder(rootNode: root, &res)
+        print("midOrder = \(res)")
+        if res.count == 0 {
+            return true
+        }
+        var start = 0, end = res.count-1
+        while start != end {
+            if res[start] == res[end] {
+                start+=1
+                end-=1
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+    func midOrder(rootNode: TreeNode?, _ res: inout [Int]) -> Void {
+        if rootNode != nil {
+            if let val = rootNode?.val {
+                midOrder(rootNode: rootNode?.left, &res)
+                if rootNode?.left == nil && rootNode?.right != nil {
+                    res.append(-1)
+                }
+                res.append(val)
+                midOrder(rootNode: rootNode?.right, &res)
+                if rootNode?.left != nil && rootNode?.right == nil {
+                    res.append(-1)
+                }
+            }
+        }
+    }
+ */
+    func isSymmetric(_ root: TreeNode?) -> Bool {
+        return isMirror(root, root)
+    }
+    func isMirror(_ root1: TreeNode?, _ root2: TreeNode?) -> Bool {
+        if root1 == nil && root2 == nil {
+            return true
+        }
+        if root1 == nil || root2 == nil {
+            return false
+        }
+        return root1?.val == root2?.val &&
+            isMirror(root1?.left, root2?.right) &&
+            isMirror(root1?.right, root2?.left)
+    }
+}
+let pSonLeft = TreeNode.init(3)
+let pSonRight = TreeNode.init(4)
+let pSon = TreeNode.init(2, pSonLeft, nil)
+let pSon1Left = TreeNode.init(4)
+let pSon1Right = TreeNode.init(3)
+let pSon1 = TreeNode.init(2, pSon1Left, pSon1Right)
+let p = TreeNode.init(1, pSon, pSon1)
+
+//let pSonLeft = TreeNode.init(2)
+////let pSonRight = TreeNode.init(4)
+//let pSon = TreeNode.init(2, pSonLeft, nil)
+//let pSon1Left = TreeNode.init(2)
+////let pSon1Right = TreeNode.init(3)
+//let pSon1 = TreeNode.init(2, pSon1Left, nil)
+//let p = TreeNode.init(1, pSon, pSon1)
+
+NewSolution22().isSymmetric(p)
