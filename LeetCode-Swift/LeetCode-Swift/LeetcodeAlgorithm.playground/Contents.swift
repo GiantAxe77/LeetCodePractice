@@ -1426,4 +1426,57 @@ let p = TreeNode.init(1, pSon, pSon1)
 //let pSon1 = TreeNode.init(2, pSon1Left, nil)
 //let p = TreeNode.init(1, pSon, pSon1)
 
-NewSolution22().isSymmetric(p)
+//NewSolution22().isSymmetric(p)
+
+class NewSolution23 {
+    func maxDepth(_ root: TreeNode?) -> Int {
+        guard root != nil else {
+            return 0
+        }
+        let leftCount = maxDepth(root?.left)
+        let rightCount = maxDepth(root?.right)
+        
+        return max(leftCount, rightCount) + 1
+    }
+}
+
+class NewSolution24 {
+    func levelOrderBottom(_ root: TreeNode?) -> [[Int]] {
+        let res = queueSearch(root)
+        if res.count == 0 {
+            return []
+        } else {
+            return res.reversed()
+        }
+    }
+    // 层序遍历
+    func queueSearch(_ root: TreeNode?) -> [[Int]] {
+        guard root != nil else {
+            return []
+        }
+        var queue = [TreeNode]()
+        var res = [[Int]]()
+        queue.append(root!)
+        while !queue.isEmpty {
+//            print((queue.first?.val)!)
+            let size = queue.count
+            var level = [Int]()
+            for _ in 0..<size {
+                let node = queue.removeFirst()
+                level.append(node.val)
+                if node.left != nil {
+                    queue.append(node.left!)
+                }
+                if node.right != nil {
+                    queue.append(node.right!)
+                }
+            }
+            res.append(level)
+        }
+        return res
+    }
+}
+let node24Left = TreeNode.init(9)
+let node24Right = TreeNode.init(20, TreeNode.init(15), TreeNode.init(7))
+let node24 = TreeNode.init(3, node24Left, node24Right)
+NewSolution24().levelOrderBottom(node24)
