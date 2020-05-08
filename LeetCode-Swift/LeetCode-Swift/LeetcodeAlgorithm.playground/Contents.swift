@@ -1476,7 +1476,29 @@ class NewSolution24 {
         return res
     }
 }
-let node24Left = TreeNode.init(9)
-let node24Right = TreeNode.init(20, TreeNode.init(15), TreeNode.init(7))
-let node24 = TreeNode.init(3, node24Left, node24Right)
-NewSolution24().levelOrderBottom(node24)
+//let node24Left = TreeNode.init(9)
+//let node24Right = TreeNode.init(20, TreeNode.init(15), TreeNode.init(7))
+//let node24 = TreeNode.init(3, node24Left, node24Right)
+//NewSolution24().levelOrderBottom(node24)
+
+class NewSolution25 {
+    // Primary idea: recursion, the root of subtree should always be mid point of the subarray
+    // Time Complexity: O(n), Space Complexity: O(1)
+    func sortedArrayToBST(_ nums: [Int]) -> TreeNode? {
+        return helper(nums, 0, nums.count-1)
+    }
+    func helper(_ nums: [Int], _ left: Int, _ right: Int) -> TreeNode? {
+        guard left <= right else {
+            return nil
+        }
+        let mid = left + (right-left)/2
+        let root = TreeNode.init(nums[mid])
+        root.left = helper(nums, left, mid-1)
+        root.right = helper(nums, mid+1, right)
+        
+        return root
+    }
+}
+//NewSolution25().sortedArrayToBST([-3,-1,2,3,7,9])
+
+
