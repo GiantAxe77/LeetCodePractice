@@ -1501,4 +1501,28 @@ class NewSolution25 {
 }
 //NewSolution25().sortedArrayToBST([-3,-1,2,3,7,9])
 
-
+class NewSolution26 {
+    // 据二叉平衡树的定义，我们先写一个求二叉树最大深度的函数depth()。在主函数中，利用比较左右子树depth的差值来判断当前结点的平衡性，如果不满足则返回false。然后递归当前结点的左右子树，得到结果。
+    func isBalanced(_ root: TreeNode?) -> Bool {
+        guard root != nil else {
+            return true
+        }
+        let leftDepth = maxDepth(root?.left)
+        let rightDepth = maxDepth(root?.right)
+        
+        if !(leftDepth == rightDepth || leftDepth == rightDepth+1 || leftDepth+1 == rightDepth) {
+            return false
+        }
+        return isBalanced(root?.left) && isBalanced(root?.right)
+    }
+    func maxDepth(_ root: TreeNode?) -> Int {
+        guard root != nil else {
+            return 0
+        }
+        let leftCount = maxDepth(root?.left)
+        let rightCount = maxDepth(root?.right)
+        
+        return max(leftCount, rightCount) + 1
+    }
+    
+}
