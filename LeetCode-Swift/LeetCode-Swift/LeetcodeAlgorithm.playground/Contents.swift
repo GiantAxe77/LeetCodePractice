@@ -1461,7 +1461,7 @@ class NewSolution24 {
 //            print((queue.first?.val)!)
             let size = queue.count
             var level = [Int]()
-            for _ in 0..<size {
+            for _ in 0..<size { // 按层遍历
                 let node = queue.removeFirst()
                 level.append(node.val)
                 if node.left != nil {
@@ -1525,4 +1525,38 @@ class NewSolution26 {
         return max(leftCount, rightCount) + 1
     }
     
+}
+
+class NewSolution27 {
+    // 第二种就是判断左子树或右子树是否为空，若左子树为空，则返回右子树的深度，反之返回左子树的深度，如果都不为空，则返回左子树和右子树深度的最小值
+    func minDepth(_ root: TreeNode?) -> Int {
+        guard root != nil else {
+            return 0
+        }
+        if root?.left == nil && root?.right != nil {
+            return minDepth(root?.right) + 1
+        } else if root?.right == nil && root?.left != nil {
+            return minDepth(root?.left) + 1
+        } else {
+            let leftCount = minDepth(root?.left)
+            let rightCount = minDepth(root?.right)
+            return min(leftCount, rightCount) + 1
+        }
+    }
+}
+//let root = TreeNode.init(1)
+//root.left = TreeNode.init(2)
+//NewSolution27().minDepth(root)
+
+class NewSolution28 {
+    // 这道题给了一棵二叉树，问是否存在一条从跟结点到叶结点到路径，使得经过到结点值之和为一个给定的 sum 值，这里需要用深度优先算法 DFS 的思想来遍历每一条完整的路径，也就是利用递归不停找子结点的左右子结点，而调用递归函数的参数只有当前结点和 sum 值。首先，如果输入的是一个空结点，则直接返回 false，如果如果输入的只有一个根结点，则比较当前根结点的值和参数 sum 值是否相同，若相同，返回 true，否则 false。 这个条件也是递归的终止条件。下面就要开始递归了，由于函数的返回值是 Ture/False，可以同时两个方向一起递归，中间用或 || 连接，只要有一个是 True，整个结果就是 True。递归左右结点时，这时候的 sum 值应该是原 sum 值减去当前结点的值，参见代码如下：
+    func hasPathSum(_ root: TreeNode?, _ sum: Int) -> Bool {
+        guard let root = root else {
+            return false
+        }
+        if sum == root.val && root.left == nil && root.right == nil {
+            return true
+        }
+        return hasPathSum(root.left, sum-root.val) || hasPathSum(root.right, sum-root.val)
+    }
 }
