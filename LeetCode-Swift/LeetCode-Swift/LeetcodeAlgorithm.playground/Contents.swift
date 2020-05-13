@@ -1560,3 +1560,71 @@ class NewSolution28 {
         return hasPathSum(root.left, sum-root.val) || hasPathSum(root.right, sum-root.val)
     }
 }
+
+class NewSolution29 {
+    func generate(_ numRows: Int) -> [[Int]] {
+        var res = [[Int]]()
+        for i in 0..<numRows {
+            if i == 0 {
+                res.append([1])
+            } else if i == 1 {
+                res.append([1,1])
+            } else {
+                var tmp = [Int](repeating: 0, count: i+1)
+                tmp[0] = 1
+                tmp[i] = 1
+                if let last = res.last {
+                    for j in 1...i-1 {
+                        tmp[j] = last[j-1]+last[j]
+                    }
+                }
+                res.append(tmp)
+            }
+        }
+        return res
+    }
+}
+let res29 = NewSolution29().generate(7)
+print(res29)
+//      [1],         // 1
+//     [1,1],        // 2
+//    [1,2,1],       // 3
+//   [1,3,3,1],      // 4
+//  [1,4,6,4,1]      // 5
+// [1,5,10,10,5,1]   // 6
+//[1,6,15,20,15,6,1] // 7
+
+class NewSolution30 {
+    func getRow(_ rowIndex: Int) -> [Int] {
+        var res = [[Int]]()
+        for i in 0..<rowIndex+1 {
+            if i == 0 {
+                res.append([1])
+            } else if i == 1 {
+                res.append([1,1])
+            } else {
+                var tmp = [Int](repeating: 0, count: i+1)
+                tmp[0] = 1
+                tmp[i] = 1
+                if let last = res.last {
+                    for j in 1...i-1 {
+                        tmp[j] = last[j-1]+last[j]
+                    }
+                }
+                res.append(tmp)
+            }
+        }
+        return res[rowIndex]
+    }
+    func getRow1(_ rowIndex: Int) -> [Int] {
+        if rowIndex == 0 {
+            return [1]
+        }
+        var res = [Int]()
+        let preRow = getRow1(rowIndex-1)
+        for i in 1..<rowIndex {
+            res.append(preRow[i-1]+preRow[i])
+        }
+        return [1] + res + [1]
+    }
+}
