@@ -1628,3 +1628,25 @@ class NewSolution30 {
         return [1] + res + [1]
     }
 }
+
+class NewSolution31 {
+    // 只需要遍历一次数组，用一个变量记录遍历过数中的最小值，然后每次计算当前值和这个最小值之间的差值最为利润，然后每次选较大的利润来更新。当遍历完成后当前利润即为所求
+    func maxProfit(_ prices: [Int]) -> Int {
+        guard prices.count != 0 else {
+            return 0
+        }
+        var minNum = prices[0]
+        var maxProfit = 0
+        for i in 0..<prices.count {
+            if prices[i] < minNum {
+                minNum = prices[i]
+            }
+            if prices[i] - minNum > maxProfit {
+                maxProfit = prices[i] - minNum
+            }
+        }
+        return maxProfit
+    }
+}
+//NewSolution31().maxProfit([7,2,4,1])
+
