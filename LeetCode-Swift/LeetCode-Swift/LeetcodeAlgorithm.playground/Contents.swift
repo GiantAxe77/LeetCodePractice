@@ -1650,3 +1650,27 @@ class NewSolution31 {
 }
 //NewSolution31().maxProfit([7,2,4,1])
 
+class NewSolution32 {
+    // 寻找每一个低谷后的峰值顶端，相加起来便是最大利润
+    func maxProfit(_ prices: [Int]) -> Int {
+        var i = 0
+        var peak = prices[0]
+        var valley = prices[0]
+        var profit = 0
+        while i < prices.count-1 {
+            while i < prices.count-1 && prices[i] >= prices[i+1] {
+                i+=1
+            }
+            valley = prices[i]
+            while i < prices.count-1 && prices[i] <= prices[i+1] {
+                i+=1
+            }
+            peak = prices[i]
+            profit+=(peak-valley)
+        }
+        return profit
+    }
+}
+//NewSolution32().maxProfit([7,1,5,3,6,4])
+
+
