@@ -1673,4 +1673,21 @@ class NewSolution32 {
 }
 //NewSolution32().maxProfit([7,1,5,3,6,4])
 
+class NewSolution33 {
+    func isPalindrome(_ s: String) -> Bool {
+        let chars = Array(s.lowercased().components(separatedBy: CharacterSet.alphanumerics.inverted).joined(separator: ""))
+        var left = 0, right = chars.count-1
+        while left < right {
+            if chars[left] == chars[right] {
+                left+=1
+                right-=1
+                continue
+            } else {
+                return false
+            }
+        }
+        return true
+    }
+}
+//NewSolution33().isPalindrome("A man, a plan, a canal: Panama")
 
