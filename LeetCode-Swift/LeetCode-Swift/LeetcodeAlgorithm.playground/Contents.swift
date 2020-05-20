@@ -1691,3 +1691,32 @@ class NewSolution33 {
 }
 //NewSolution33().isPalindrome("A man, a plan, a canal: Panama")
 
+class NewSolution34 {
+    func singleNumber(_ nums: [Int]) -> Int {
+        let sortedArr = nums.sorted()
+        var index = 0
+        while index <= sortedArr.count-1 {
+            guard index != sortedArr.count-1 else {
+                return sortedArr[index]
+            }
+            if sortedArr[index] != sortedArr[index+1] {
+                return sortedArr[index]
+            } else {
+                index+=2
+            }
+        }
+
+        return Int.max
+    }
+    // 使用异或运算
+    // a^0=a  a^a=0  a^b^a=(a^a)^b=b
+    func singleNumber1(_ nums: [Int]) -> Int {
+        
+        var start = 0
+        for num in nums {
+            start^=num
+        }
+        return start
+    }
+}
+NewSolution34().singleNumber1([4,1,2,1,2])
