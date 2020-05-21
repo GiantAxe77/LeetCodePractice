@@ -17,6 +17,10 @@ var str = "Hello, playground"
  * Definition for singly-linked list.
  */
 public class ListNode {
+//    public static func ==(lhs: ListNode<T>, rhs: ListNode<T>) -> Bool {
+//        return lhs.val == rhs.val && lhs.next == rhs.next
+//    }
+    
     public var val: Int
     public var next: ListNode?
     public init(_ val: Int) {
@@ -24,6 +28,18 @@ public class ListNode {
         self.next = nil
     }
 }
+
+//class ListNode<T> : Equatable where T : Equatable {
+//    static func == (lhs: ListNode<T>, rhs: ListNode<T>) -> Bool {
+//        return lhs.element == rhs.element && lhs.next == rhs.next
+//    }
+//    var element:T!
+//    var next:ListNode<T>!
+//    init(_ element : T, next:ListNode? = nil) {
+//        self.element = element
+//        self.next = next
+//    }
+//}
 
 /**
  * Definition for a binary tree node.
@@ -1719,4 +1735,36 @@ class NewSolution34 {
         return start
     }
 }
-NewSolution34().singleNumber1([4,1,2,1,2])
+//NewSolution34().singleNumber1([4,1,2,1,2])
+
+//extension ListNode: Hashable {
+//    public static func ==(lhs: ListNode, rhs: ListNode) -> Bool {
+//        return lhs.val == rhs.val && lhs.next == rhs.next
+//    }
+//
+//    public var hashValue: Int { return val.hashValue ^ (next?.hashValue)! }
+//}
+class NewSolution35 {
+    // 可以采用Hashtable来做，比较存入表内的结点的内存地址，但是题目要求空间复杂度是常量级，所以采用快慢指针的做法
+    // === 参考文章：https://swifter.tips/equal/
+    func hasCycle(_ head: ListNode?) -> Bool {
+        if head == nil || head?.next == nil {
+            return false
+        }
+        var fast = head, slow = head
+        while fast != nil && fast?.next != nil {
+            fast = fast?.next?.next
+            slow = slow?.next
+            if fast === slow {
+                return true
+            }
+        }
+        return false
+    }
+}
+//let sol35List = LinkedList()
+//sol35List.append(value: 1)
+//sol35List.append(value: 2)
+//print(sol35List)
+//NewSolution35().hasCycle(sol35List.head)
+
