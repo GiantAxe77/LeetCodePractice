@@ -1768,3 +1768,49 @@ class NewSolution35 {
 //print(sol35List)
 //NewSolution35().hasCycle(sol35List.head)
 
+
+class MinStack {
+    // 使用两个栈来实现，一个栈来按顺序存储 push 进来的数据，另一个用来存出现过的最小值。
+    var stack: [Int]
+    var minStack: [Int]
+    
+    /** initialize your data structure here. */
+    init() {
+        stack = [Int]()
+        minStack = [Int]()
+    }
+    
+    func push(_ x: Int) {
+        stack.append(x)
+        if minStack.isEmpty || x <= minStack.last! {
+            minStack.append(x)
+        }
+    }
+    
+    func pop() {
+        guard !stack.isEmpty else {
+            return
+        }
+        let lastEle = stack.removeLast()
+        if let last = minStack.last, last == lastEle {
+            minStack.removeLast()
+        }
+    }
+    
+    func top() -> Int {
+        return stack.isEmpty ? -1 : stack.last!
+    }
+    
+    func getMin() -> Int {
+        return minStack.isEmpty ? -1 : minStack.last!
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * let obj = MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * let ret_3: Int = obj.top()
+ * let ret_4: Int = obj.getMin()
+ */
