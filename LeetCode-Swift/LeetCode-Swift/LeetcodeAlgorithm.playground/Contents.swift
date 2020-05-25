@@ -1814,3 +1814,35 @@ class MinStack {
  * let ret_3: Int = obj.top()
  * let ret_4: Int = obj.getMin()
  */
+
+class NewSolution37 {
+        // 一种特别巧妙的方法: 虽然题目中强调了链表中不存在环，但是我们可以用环的思想来做，我们让两条链表分别从各自的开头开始往后遍历，当其中一条遍历到末尾时，我们跳到另一个条链表的开头继续遍历。两个指针最终会相等，而且只有两种情况，一种情况是在交点处相遇，另一种情况是在各自的末尾的空节点处相等。为什么一定会相等呢，因为两个指针走过的路程相同，是两个链表的长度之和，所以一定会相等。这个思路真的很巧妙，而且更重要的是代码写起来特别的简洁
+        func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode? ) -> ListNode? {
+            if headA == nil || headB == nil {
+                return nil
+            }
+            var a = headA
+            var b = headB
+            while (a !== b) {
+                a == nil ? (a = headB) : (a = a?.next)
+                b == nil ? (b = headA) : (b = b?.next)
+            }
+            return a
+        }
+        
+//        public class ListNode: Equatable {
+//
+//            public var val: Int
+//            public var next: ListNode?
+//
+//            public init(_ val: Int) {
+//                self.val = val
+//                self.next = nil
+//            }
+//
+//            public static func ==(lhs: Solution.ListNode, rhs: Solution.ListNode) -> Bool {
+//                return lhs.val == rhs.val && lhs.next == rhs.next
+//            }
+//        }
+    
+}
