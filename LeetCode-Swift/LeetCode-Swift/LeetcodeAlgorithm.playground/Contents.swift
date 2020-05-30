@@ -1846,3 +1846,32 @@ class NewSolution37 {
 //        }
     
 }
+
+class NewSolution38 {
+    func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
+        // 解法一：和leetcode1解法一样
+//        var dict = [Int:Int]()
+//        for (i, num) in numbers.enumerated() {
+//            if let index = dict[target-num] {
+//                return [index+1, i+1]
+//            }
+//            dict[num] = i
+//        }
+//        return []
+        
+        // 解法二:两指针前后对撞
+        var start = 0
+        var end = numbers.count-1
+        while numbers[start] + numbers[end] != target {
+            if numbers[start] + numbers[end] > target {
+                end-=1
+            }
+            if numbers[start] + numbers[end] < target {
+                start+=1
+            }
+        }
+        return [start+1, end+1]
+    }
+}
+//NewSolution38().twoSum([2,7,11,15], 9)
+
