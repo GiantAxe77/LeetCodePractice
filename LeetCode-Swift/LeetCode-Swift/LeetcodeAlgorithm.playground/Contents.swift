@@ -1875,3 +1875,20 @@ class NewSolution38 {
 }
 //NewSolution38().twoSum([2,7,11,15], 9)
 
+class NewSolution39 {
+    // 10进制转换26进制
+    func convertToTitle(_ n: Int) -> String {
+        guard n > 0 else {
+            return ""
+        }
+        var res = ""
+        var num = n
+        while num > 0 {
+            res = String(Character(UnicodeScalar((num-1) % 26 + 65)!)) + res
+            num = (num-1) / 26
+        }
+        return res
+    }
+}
+//NewSolution39().convertToTitle(702)
+
