@@ -1892,3 +1892,41 @@ class NewSolution39 {
 }
 //NewSolution39().convertToTitle(702)
 
+class NewSolution40 {
+    // 方法一：利用哈希表来记录每个元素
+    func majorityElement(_ nums: [Int]) -> Int {
+        var dict = [String: Int]()
+        for num in nums {
+            if let val = dict[String(num)] {
+                dict.updateValue((val+1), forKey: String(num))
+            } else {
+                dict.updateValue(1, forKey: String(num))
+            }
+        }
+        let majorCount = nums.count/2
+        return Int(dict.filter{ $0.value > majorCount }.first!.key)!
+    }
+    // 方法二：利用排序
+    func majorityElement1(_ nums: [Int]) -> Int {
+        let tmp = nums.sorted()
+        return tmp[nums.count/2]
+    }
+    
+    // 方法三：摩尔投票算法
+    func majorityElement2(_ nums: [Int]) -> Int {
+        var count = 0
+        var candicate = 0
+        for num in nums {
+            if count == 0 {
+                candicate = num
+            }
+            if candicate == num {
+                count+=1
+            } else {
+                count-=1
+            }
+        }
+        return candicate
+    }
+}
+NewSolution40().majorityElement2([2,2,1,1,1,2,2])
