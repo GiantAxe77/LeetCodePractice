@@ -1930,3 +1930,17 @@ class NewSolution40 {
     }
 }
 NewSolution40().majorityElement2([2,2,1,1,1,2,2])
+
+class NewSolution41 {
+    func titleToNumber(_ s: String) -> Int {
+        let arr = Array(Array(s).reversed())
+        var res = 0
+        for i in 0..<arr.count {
+            let tmp = pow(26, i)
+            res+=Int(UnicodeScalar(String(arr[i]))!.value-64) * Int(tmp as NSNumber)
+        }
+        return res
+    }
+}
+//NewSolution41().titleToNumber("ZY")
+
