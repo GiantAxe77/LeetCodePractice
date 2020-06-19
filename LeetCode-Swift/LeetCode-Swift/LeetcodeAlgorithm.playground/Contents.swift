@@ -1944,3 +1944,30 @@ class NewSolution41 {
 }
 //NewSolution41().titleToNumber("ZY")
 
+class NewSolution42 {
+    func trailingZeroes(_ n: Int) -> Int {
+        // 错误解法：
+//        guard n > 4 else {
+//            return 0
+//        }
+//        var count = 0
+//        for i in 5...n {
+//            // 从1开始顺序查找，只要这个数可以整除5，count加一，循环直到不能整除5停止，然后继续遍历下一个数字
+//            var num = i
+//            while num%5 == 0 {
+//                count+=1
+//                num = num/5
+//            }
+//        }
+//        return count
+        var count = 0
+        var n = n
+        while n>0 {
+            count += (n/5)
+            n = n/5
+        }
+        return count
+    }
+}
+NewSolution42().trailingZeroes(1808548329)
+
