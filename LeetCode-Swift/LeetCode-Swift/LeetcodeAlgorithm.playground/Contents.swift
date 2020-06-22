@@ -1969,5 +1969,18 @@ class NewSolution42 {
         return count
     }
 }
-NewSolution42().trailingZeroes(1808548329)
+//NewSolution42().trailingZeroes(1808548329)
+
+class NewSolution43 {
+    func rotate(_ nums: inout [Int], _ k: Int) {
+        var count = k
+        while count>0 {
+            let last = nums.removeLast()
+            nums.insert(last, at: 0)
+            count-=1
+        }
+    }
+}
+//var array43 = [1,2,3,4,5,6,7]
+//NewSolution43().rotate(&array43, 3)
 
