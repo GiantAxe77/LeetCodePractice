@@ -1984,3 +1984,54 @@ class NewSolution43 {
 //var array43 = [1,2,3,4,5,6,7]
 //NewSolution43().rotate(&array43, 3)
 
+class NewSolution44 {
+    func reverseBits(_ n: Int) -> Int {
+        let binNum = decTobin(number: n)
+        var array = Array(String(binNum))
+        let needAdd = 32-array.count
+        if needAdd > 0 {
+            for _ in 0..<needAdd {
+                array.insert("0", at: 0)
+            }
+        }
+        print("array=\(array)")
+        let revArr = Array(array.reversed())
+        print("revArr=\(revArr)")
+        let res = binTodec(number: String(revArr))
+        return res
+    }
+    // 二进制转十进制
+    func binTodec(number num: String) -> Int {
+        var sum: Int = 0
+        for c in num {
+            let str = String(c)
+            sum = sum * 2 + Int(str)!
+        }
+        return sum
+    }
+    // 十进制转二进制
+    func decTobin(number:Int) -> String {
+        var num = number
+        var str = ""
+        while num > 0 {
+            str = "\(num % 2)" + str
+            num /= 2
+        }
+        return str
+    }
+    
+    // 正确解法：参照花花酱leetcode讲解
+    // 二进制数颠倒：ans = ans * 2 + n % 2
+    //             n /= 2
+    func reverseBits2(_ n: Int) -> Int {
+        var ans = 0
+        var num = n
+        for _ in 0..<32 {
+            ans = (ans << 1) | (num & 1)
+            num >>= 1
+        }
+        return ans
+    }
+}
+NewSolution44().reverseBits2(43261596)
+
