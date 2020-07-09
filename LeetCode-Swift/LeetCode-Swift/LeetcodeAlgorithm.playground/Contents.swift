@@ -2033,5 +2033,19 @@ class NewSolution44 {
         return ans
     }
 }
-NewSolution44().reverseBits2(43261596)
+//NewSolution44().reverseBits2(43261596)
 
+class NewSolution45 {
+    // 汉明重量
+    func hammingWeight(_ n: Int) -> Int {
+        var ans = 0
+        var num = n
+        for _ in 0..<32 {
+            if num & 1 == 1 {
+                ans+=1
+            }
+            num >>= 1
+        }
+        return ans
+    }
+}
