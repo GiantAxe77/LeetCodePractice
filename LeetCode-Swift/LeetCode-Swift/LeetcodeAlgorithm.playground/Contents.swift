@@ -2049,3 +2049,41 @@ class NewSolution45 {
         return ans
     }
 }
+
+class NewSolution46 {
+//    func rob(_ nums: [Int]) -> Int {
+//        var tmp1 = 0
+//        var tmp2 = 0
+//        for i in 0..<nums.count {
+//            if i%2 == 0 {
+//                tmp1 = max(tmp1+nums[i], tmp2) // 1 3 103
+//            } else {
+//                tmp2 = max(tmp2+nums[i], tmp1) // 3 6
+//            }
+//        }
+//        return max(tmp1, tmp2)
+//    }
+    // 网上dp解法:用当前房子钱的加上相隔的房子的钱和上一个房子的钱作比较，取最大值
+    func rob(_ nums: [Int]) -> Int {
+        var nums = nums
+        let count = nums.count
+        if count <= 0 {return 0}
+        if count == 1 {return nums[0]}
+        if count == 2 {return max(nums[0], nums[1])}
+
+        var res = Array(repeating: 0, count: count)
+        res[0] = nums[0]
+        res[1] = max(nums[1],nums[0])
+        for i in 2..<count {
+            res[i] = max(res[i-2]+nums[i], res[i-1])
+        }
+        return res[count-1]
+    }
+    
+}
+//NewSolution46().rob([2,1,1,2])
+//NewSolution46().rob([1,0,2,0,2,4])
+//NewSolution46().rob([2,7,9,3,1])
+NewSolution46().rob([1,2,3,1])
+//NewSolution46().rob([1,3,1,3,100])
+
