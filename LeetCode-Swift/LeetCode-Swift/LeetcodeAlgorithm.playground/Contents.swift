@@ -2084,6 +2084,30 @@ class NewSolution46 {
 //NewSolution46().rob([2,1,1,2])
 //NewSolution46().rob([1,0,2,0,2,4])
 //NewSolution46().rob([2,7,9,3,1])
-NewSolution46().rob([1,2,3,1])
+//NewSolution46().rob([1,2,3,1])
 //NewSolution46().rob([1,3,1,3,100])
+
+class NewSolution47 {
+    var set = Set<Int>()
+    func isHappy(_ n: Int) -> Bool {
+        let str = String(n)
+        let arr = Array(str)
+        var sum = 0
+        for i in 0..<arr.count {
+            let tmp = Int(String(arr[i]))!
+            sum+=tmp*tmp
+        }
+        if sum == 1 {
+            return true
+        } else {
+            if set.contains(sum) {
+                return false
+            } else {
+                set.insert(sum)
+                return isHappy(sum)
+            }
+        }
+    }
+}
+NewSolution47().isHappy(19)
 
